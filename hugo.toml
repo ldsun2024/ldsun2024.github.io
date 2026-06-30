@@ -1,26 +1,21 @@
 baseURL = "https://ldsun2024.github.io"
 languageCode = "zh-CN"
-title = "The Quiet Canvas"
+title = "8861"
 
 # Content settings
 summaryLength = 30
-paginate = 10
+paginate = 20
 
 # Menu
 [[menus.main]]
-  name = "Home"
+  name = "首页"
   url = "/"
   weight = 1
 
 [[menus.main]]
-  name = "Archives"
+  name = "归档"
   url = "/posts/"
   weight = 2
-
-[[menus.main]]
-  name = "About"
-  url = "/about/"
-  weight = 3
 
 # Params
 [params]

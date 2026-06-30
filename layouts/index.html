@@ -1,61 +1,9 @@
 {{ define "main" }}
 <!-- Hero -->
-<section class="hero">
-  <h1 class="fade-in">{{ .Site.Params.heroTitle | default "Exploring the beauty of simplicity through words and thoughts." }}</h1>
-  <div class="hero-divider fade-in"></div>
-  <p class="fade-in">{{ .Site.Params.heroSubtitle | default "A space dedicated to the pursuit of intentionality, slow living, and the quiet power of understated design." }}</p>
-</section>
-
-{{ $posts := where .Site.RegularPages "Section" "posts" }}
-
-<!-- Featured -->
-{{ $featured := first 1 $posts }}
-{{ if $featured }}
-<section class="featured-section fade-in">
-  {{ range $featured }}
-  <a class="featured-card" href="{{ .RelPermalink }}">
-    <span class="label-sm">Featured — Latest</span>
-    <h2>{{ .Title }}</h2>
-    <span class="featured-link">Read Story →</span>
-  </a>
-  {{ end }}
-</section>
-{{ end }}
-
-<!-- Recent Posts -->
-{{ if $posts }}
-<section class="post-list">
-  <div class="section-header fade-in">
-    <h3>Recent Stories</h3>
-    <div class="line"></div>
-    <a href="{{ "/posts/" | relURL }}">View All</a>
-  </div>
-  <div class="post-list-inner">
-    {{ range $posts }}
-    <article class="post-item fade-in">
-      <span class="label-sm">{{ .Date.Format "Jan 02, 2006" }}</span>
-      <h2>{{ .Title }}</h2>
-      <p>{{ .Summary | plainify | truncate 200 }}</p>
-      {{ with .Params.tags }}
-      <div class="post-tags">
-        {{ range . }}
-        <a class="tag" href="{{ "/tags/" | relURL }}{{ . | urlize }}">{{ . }}</a>
-        {{ end }}
-      </div>
-      {{ end }}
-      <a class="read-link" href="{{ .RelPermalink }}">Read Perspective</a>
-    </article>
-    {{ end }}
-  </div>
-</section>
-{{ end }}
-
-<!-- CTA -->
-<section class="cta-section fade-in">
-  <div class="container">
-    <h2>Stay in the quiet.</h2>
-    <p>Follow along for curated stories and thoughts delivered to your inbox.</p>
-    <a class="cta-btn" href="{{ "/about/" | relURL }}">Get in Touch</a>
+<section class="hero hero-minimal">
+  <div class="hero-lines">
+    <span class="hero-line-left fade-in-1">只有无与伦比的专注</span>
+    <span class="hero-line-right fade-in-2">才有超乎想象的回报</span>
   </div>
 </section>
 {{ end }}

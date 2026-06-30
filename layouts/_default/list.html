@@ -1,32 +1,43 @@
 {{ define "main" }}
-<section class="hero" style="padding-bottom:0;">
-  <h1 class="fade-in">{{ .Title }}</h1>
-  <div class="hero-divider fade-in"></div>
-  <p class="fade-in">{{ .Params.description | default "A collection of thoughts, stories, and perspectives." }}</p>
-</section>
-
-<section class="post-list" style="margin-top:0;">
-  <div class="post-list-inner">
-    {{ range .Pages.GroupByDate "2006" }}
-    <div class="year-group fade-in">
-      <h3 class="year-heading">{{ .Key }}</h3>
-      {{ range .Pages }}
-      <article class="post-item">
-        <span class="label-sm">{{ .Date.Format "Jan 02, 2006" }}</span>
-        <h2>{{ .Title }}</h2>
-        <p>{{ .Summary | plainify | truncate 200 }}</p>
-        {{ with .Params.tags }}
-        <div class="post-tags">
-          {{ range . }}
-          <a class="tag" href="{{ "/tags/" | relURL }}{{ . | urlize }}">{{ . }}</a>
-          {{ end }}
-        </div>
-        {{ end }}
-        <a class="read-link" href="{{ .RelPermalink }}">Read Perspective</a>
-      </article>
-      {{ end }}
-    </div>
+<section class="archive-page">
+  <!-- Tag Filter -->
+  <div class="tag-filter-bar">
+    {{ $current := . }}
+    {{ $isTag := eq .Data.Singular "tag" }}
+    <a class="tag-filter-chip{{ if not $isTag }} active{{ end }}" href="{{ "/posts/" | relURL }}">全部</a>
+    {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+    <a class="tag-filter-chip{{ if $isTag }}{{ if eq $current.Title $name }} active{{ end }}{{ end }}" href="{{ "/tags/" | relURL }}{{ $name | urlize }}">{{ $name }}</a>
     {{ end }}
   </div>
+
+  <div class="archive-list">
+    {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") 20 }}
+    {{ range $paginator.Pages.GroupByDate "2006" }}
+    <section class="archive-year-group">
+      <div class="archive-year-col">
+        <h2 class="archive-year-label">{{ .Key }}</h2>
+      </div>
+      <div class="archive-entries-col">
+        {{ range .Pages }}
+        <a class="archive-entry" href="{{ .RelPermalink }}">
+          <span class="entry-date">{{ .Date.Format "1月 02日" }}</span>
+          <span class="entry-title">{{ .Title }}</span>
+        </a>
+        {{ end }}
+      </div>
+    </section>
+    {{ end }}
+  </div>
+  {{ if gt $paginator.TotalPages 1 }}
+  <nav class="pagination fade-in">
+    {{ if $paginator.HasPrev }}
+    <a class="pagination-prev" href="{{ $paginator.Prev.URL }}">← 上一页</a>
+    {{ end }}
+    <span class="pagination-info">{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
+    {{ if $paginator.HasNext }}
+    <a class="pagination-next" href="{{ $paginator.Next.URL }}">下一页 →</a>
+    {{ end }}
+  </nav>
+  {{ end }}
 </section>
 {{ end }}

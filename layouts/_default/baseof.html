@@ -12,12 +12,13 @@
 </head>
 <body>
   <header class="site-header" id="header">
-    <div class="container">
-      <a class="site-title" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+    <a class="site-title" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+    <span class="site-post-count">{{ len (where .Site.RegularPages "Section" "posts") }} 篇文章</span>
+    <div class="header-right">
       <nav class="site-nav" id="nav">
-        <a href="{{ "/" | relURL }}" class="{{ if .IsHome }}active{{ end }}">Home</a>
-        <a href="{{ "/posts/" | relURL }}" class="{{ if eq .Section "posts" }}active{{ end }}">Archives</a>
-        <a href="{{ "/about/" | relURL }}" class="{{ if eq .RelPermalink "/about/" }}active{{ end }}">About</a>
+        <a href="{{ "/" | relURL }}" class="{{ if .IsHome }}active{{ end }}">首页</a>
+        <a href="{{ "/posts/" | relURL }}" class="{{ if eq .Section "posts" }}active{{ end }}">文章</a>
+        <a href="{{ "/tags/" | relURL }}" class="{{ if eq .Section "tags" }}active{{ end }}">标签</a>
       </nav>
       <button class="mobile-menu-btn" onclick="document.getElementById('nav').classList.toggle('open')">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -30,34 +31,6 @@
   <main>
     {{ block "main" . }}{{ end }}
   </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <h4>{{ .Site.Title }}</h4>
-        <p>{{ .Site.Params.description }}</p>
-      </div>
-      <div class="footer-links">
-        <div>
-          <h5>Explore</h5>
-          <ul>
-            <li><a href="{{ "/posts/" | relURL }}">Archives</a></li>
-            <li><a href="{{ "/about/" | relURL }}">About</a></li>
-          </ul>
-        </div>
-        <div>
-          <h5>Connect</h5>
-          <ul>
-            <li><a href="https://github.com/{{ .Site.Params.github }}" target="_blank">GitHub</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; {{ now.Year }} {{ .Site.Params.author }}. All rights reserved.</span>
-      <span>Powered by Hugo</span>
-    </div>
-  </footer>
 
   <script>
     // Header hide/show on scroll
@@ -82,7 +55,7 @@
         }
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in, .fade-in-1, .fade-in-2').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>

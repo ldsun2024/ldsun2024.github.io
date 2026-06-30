@@ -1,0 +1,12 @@
+{{ define "main" }}
+<section class="archive-page">
+  <div class="tags-cloud">
+    {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+    <a class="tag-cloud-item" href="{{ "/tags/" | relURL }}{{ $name | urlize }}">
+      {{ $name }}
+      <span class="tag-count">{{ len $taxonomy.Pages }}</span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

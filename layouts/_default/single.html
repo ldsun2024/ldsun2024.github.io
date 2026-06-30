@@ -2,13 +2,13 @@
 <article class="single-content">
   <header class="post-header fade-in">
     <div class="post-meta">
-      <span class="label-sm">{{ .Date.Format "Jan 02, 2006" }}</span>
+      <span class="label-sm">{{ .Date.Format "2006-01-02" }}</span>
       {{ if .Lastmod }}
       <span class="meta-sep">·</span>
-      <span class="label-sm">Updated {{ .Lastmod.Format "Jan 02, 2006" }}</span>
+      <span class="label-sm">更新 {{ .Lastmod.Format "2006-01-02" }}</span>
       {{ end }}
       <span class="meta-sep">·</span>
-      <span class="label-sm">{{ .ReadingTime }} min read</span>
+      <span class="label-sm">{{ .ReadingTime }} 分钟</span>
     </div>
     <h1>{{ .Title }}</h1>
     {{ with .Params.tags }}
@@ -21,6 +21,9 @@
   </header>
   <div class="post-content fade-in">
     {{ .Content }}
+  </div>
+  <div class="back-to-archive fade-in">
+    <a href="{{ "/posts/" | relURL }}">← 返回文章列表</a>
   </div>
   <nav class="post-nav fade-in">
     {{ with .PrevInSection }}
