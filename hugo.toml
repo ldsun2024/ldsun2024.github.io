@@ -1,7 +1,6 @@
 baseURL = "https://ldsun2024.github.io"
 languageCode = "zh-CN"
 title = "8861 的博客"
-theme = ""
 
 # Content settings
 summaryLength = 20
