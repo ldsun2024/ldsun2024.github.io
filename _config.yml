@@ -6,6 +6,12 @@ baseurl: ""
 
 # Author
 author: 8861
+avatar: /assets/images/avatar.png
+bio: "热爱技术，热爱生活。用文字记录成长的每一步。"
+
+# Social links
+github: ldsun2024
+email: ldsun18850272729@gmail.com
 
 # Build settings
 theme: null
