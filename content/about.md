@@ -1,7 +1,6 @@
 ---
-layout: page
-title: 关于我
-permalink: /about/
+title: "关于我"
+date: 2025-06-30T12:00:00+08:00
 ---
 
 ## 关于我
@@ -13,7 +12,3 @@ permalink: /about/
 ### 联系我
 
 - GitHub: [@ldsun2024](https://github.com/ldsun2024)
-
----
-
-*博客使用 Jekyll 构建，托管于 GitHub Pages。*

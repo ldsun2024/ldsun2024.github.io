@@ -1,0 +1,30 @@
+baseURL = "https://ldsun2024.github.io"
+languageCode = "zh-CN"
+title = "8861 的博客"
+theme = ""
+
+# Content settings
+summaryLength = 20
+paginate = 6
+
+# Menu
+[[menus.main]]
+  name = "首页"
+  url = "/"
+  weight = 1
+
+[[menus.main]]
+  name = "文章"
+  url = "/posts/"
+  weight = 2
+
+[[menus.main]]
+  name = "关于"
+  url = "/about/"
+  weight = 3
+
+# Params
+[params]
+  author = "8861"
+  description = "记录学习与思考"
+  github = "ldsun2024"
