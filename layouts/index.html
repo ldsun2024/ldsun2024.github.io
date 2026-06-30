@@ -6,8 +6,9 @@
   <p class="fade-in">{{ .Site.Params.heroSubtitle | default "A space dedicated to the pursuit of intentionality, slow living, and the quiet power of understated design." }}</p>
 </section>
 
-<!-- Featured -->
 {{ $posts := where .Site.RegularPages "Section" "posts" }}
+
+<!-- Featured -->
 {{ $featured := first 1 $posts }}
 {{ if $featured }}
 <section class="featured-section fade-in">
@@ -22,8 +23,7 @@
 {{ end }}
 
 <!-- Recent Posts -->
-{{ $recent := $posts }}
-{{ if gt (len $recent) 1 }}
+{{ if $posts }}
 <section class="post-list">
   <div class="section-header fade-in">
     <h3>Recent Stories</h3>
@@ -31,7 +31,7 @@
     <a href="{{ "/posts/" | relURL }}">View All</a>
   </div>
   <div class="post-list-inner">
-    {{ range $recent }}
+    {{ range $posts }}
     <article class="post-item fade-in">
       <span class="label-sm">{{ .Date.Format "Jan 02, 2006" }}</span>
       <h2>{{ .Title }}</h2>
