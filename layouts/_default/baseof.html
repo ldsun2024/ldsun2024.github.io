@@ -4,16 +4,85 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
-  <meta name="description" content="{{ .Param "description" }}">
-  <link rel="stylesheet" href="/css/style.css">
+  <meta name="description" content="{{ .Site.Params.description }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "/css/style.css" | relURL }}">
 </head>
 <body>
-  {{ partial "header.html" . }}
+  <header class="site-header" id="header">
+    <div class="container">
+      <a class="site-title" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+      <nav class="site-nav" id="nav">
+        <a href="{{ "/" | relURL }}" class="{{ if .IsHome }}active{{ end }}">Home</a>
+        <a href="{{ "/posts/" | relURL }}" class="{{ if eq .Section "posts" }}active{{ end }}">Archives</a>
+        <a href="{{ "/about/" | relURL }}" class="{{ if eq .RelPermalink "/about/" }}active{{ end }}">About</a>
+      </nav>
+      <button class="mobile-menu-btn" onclick="document.getElementById('nav').classList.toggle('open')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
 
   <main>
     {{ block "main" . }}{{ end }}
   </main>
 
-  {{ partial "footer.html" . }}
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h4>{{ .Site.Title }}</h4>
+        <p>{{ .Site.Params.description }}</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h5>Explore</h5>
+          <ul>
+            <li><a href="{{ "/posts/" | relURL }}">Archives</a></li>
+            <li><a href="{{ "/about/" | relURL }}">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Connect</h5>
+          <ul>
+            <li><a href="https://github.com/{{ .Site.Params.github }}" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ now.Year }} {{ .Site.Params.author }}. All rights reserved.</span>
+      <span>Powered by Hugo</span>
+    </div>
+  </footer>
+
+  <script>
+    // Header hide/show on scroll
+    let lastScroll = 0;
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll <= 0) { header.classList.remove('hidden'); return; }
+      if (currentScroll > lastScroll && !header.classList.contains('hidden')) {
+        header.classList.add('hidden');
+      } else if (currentScroll < lastScroll && header.classList.contains('hidden')) {
+        header.classList.remove('hidden');
+      }
+      lastScroll = currentScroll;
+    });
+
+    // Intersection Observer for fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>

@@ -1,14 +1,22 @@
 ---
-title: "关于我"
+title: "About"
 date: 2025-06-30T12:00:00+08:00
 ---
 
-## 关于我
+## About
 
-你好！我是 8861，这是我在 GitHub Pages 上的个人博客。
+Hello — I'm 8861. This is my personal space on the web, where I share thoughts on writing, technology, and life.
 
-这里会记录我的学习笔记、技术思考和生活感悟。
+I believe in the power of focused thought and the beauty of simplicity. Here you'll find:
 
-### 联系我
+- **Writing** — pieces on craft, process, and the creative life
+- **Literature** — chapters and notes from my novel projects
+- **Reflections** — thoughts on technology, learning, and growth
+
+### Connect
 
 - GitHub: [@ldsun2024](https://github.com/ldsun2024)
+
+---
+
+*Built with Hugo. Hosted on GitHub Pages.*

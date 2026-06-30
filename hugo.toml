@@ -1,29 +1,31 @@
 baseURL = "https://ldsun2024.github.io"
 languageCode = "zh-CN"
-title = "8861 的博客"
+title = "The Quiet Canvas"
 
 # Content settings
-summaryLength = 20
-paginate = 6
+summaryLength = 30
+paginate = 10
 
 # Menu
 [[menus.main]]
-  name = "首页"
+  name = "Home"
   url = "/"
   weight = 1
 
 [[menus.main]]
-  name = "文章"
+  name = "Archives"
   url = "/posts/"
   weight = 2
 
 [[menus.main]]
-  name = "关于"
+  name = "About"
   url = "/about/"
   weight = 3
 
 # Params
 [params]
   author = "8861"
-  description = "记录学习与思考"
+  description = "An independent publication dedicated to the beauty of simplicity and the power of focused thought."
+  heroTitle = "记录与思考，文字与创作。"
+  heroSubtitle = "一个关于文学创作、技术探索与生活思考的个人博客。用文字记录成长的每一步。"
   github = "ldsun2024"
