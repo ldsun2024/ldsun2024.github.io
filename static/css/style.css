@@ -972,16 +972,6 @@ main {
   }
 }
 
-.entry-num {
-  font-family: var(--font-label);
-  font-size: 12px;
-  line-height: 1;
-  letter-spacing: 0.03em;
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  min-width: 56px;
-  transition: color 0.2s;
-}
 
 .entry-date {
   font-family: var(--font-label);

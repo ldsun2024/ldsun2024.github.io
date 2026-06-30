@@ -14,8 +14,6 @@
     {{ $pages := .Pages }}
     {{ if ne .Data.Singular "tag" }}{{ $pages = where .Site.RegularPages "Section" "posts" }}{{ end }}
     {{ $paginator := .Paginate $pages 20 }}
-    {{ $total := len $paginator.Pages }}
-    {{ $num := $total }}
     {{ range $paginator.Pages.GroupByDate "2006" }}
     <section class="archive-year-group">
       <div class="archive-year-col">
@@ -24,11 +22,9 @@
       <div class="archive-entries-col">
         {{ range .Pages }}
         <a class="archive-entry" href="{{ .RelPermalink }}">
-          <span class="entry-num">{{ printf "%06d" $num }}</span>
           <span class="entry-date">{{ .Date.Format "1月 02日" }}</span>
           <span class="entry-title">{{ .Title }}</span>
         </a>
-        {{ $num = sub $num 1 }}
         {{ end }}
       </div>
     </section>
