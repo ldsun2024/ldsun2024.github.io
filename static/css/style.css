@@ -542,6 +542,112 @@ main {
   padding: 0;
 }
 
+/* ===== Post Meta (Date / Reading Time) ===== */
+.post-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.meta-sep {
+  color: var(--color-border);
+  font-size: 14px;
+}
+
+/* ===== Tags ===== */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-label);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  background: var(--color-surface-container);
+  padding: 6px 12px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tag:hover {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* ===== Year Group (List Page) ===== */
+.year-group {
+  margin-bottom: 0;
+}
+
+.year-heading {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* ===== Post Navigation (Prev / Next) ===== */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 80px 0;
+  padding-top: 40px;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.post-nav a {
+  flex: 1;
+  text-decoration: none;
+  padding: 16px;
+  border: 1px solid var(--color-border-light);
+  border-radius: 4px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.post-nav a:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+}
+
+.post-nav .label-sm {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--color-text-secondary);
+}
+
+.post-nav-next {
+  text-align: right;
+}
+
+.post-nav-title {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--color-primary);
+  transition: color 0.2s;
+}
+
+.post-nav a:hover .post-nav-title {
+  color: var(--color-secondary);
+}
+
 .post-content blockquote {
   border-left: 2px solid var(--color-primary);
   padding: 8px 24px;

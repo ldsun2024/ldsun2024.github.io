@@ -36,6 +36,13 @@
       <span class="label-sm">{{ .Date.Format "Jan 02, 2006" }}</span>
       <h2>{{ .Title }}</h2>
       <p>{{ .Summary | plainify | truncate 200 }}</p>
+      {{ with .Params.tags }}
+      <div class="post-tags">
+        {{ range . }}
+        <a class="tag" href="{{ "/tags/" | relURL }}{{ . | urlize }}">{{ . }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
       <a class="read-link" href="{{ .RelPermalink }}">Read Perspective</a>
     </article>
     {{ end }}

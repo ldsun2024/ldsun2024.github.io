@@ -1,11 +1,40 @@
 {{ define "main" }}
 <article class="single-content">
   <header class="post-header fade-in">
-    <span class="label-sm">{{ .Date.Format "Jan 02, 2006" }}</span>
+    <div class="post-meta">
+      <span class="label-sm">{{ .Date.Format "Jan 02, 2006" }}</span>
+      {{ if .Lastmod }}
+      <span class="meta-sep">·</span>
+      <span class="label-sm">Updated {{ .Lastmod.Format "Jan 02, 2006" }}</span>
+      {{ end }}
+      <span class="meta-sep">·</span>
+      <span class="label-sm">{{ .ReadingTime }} min read</span>
+    </div>
     <h1>{{ .Title }}</h1>
+    {{ with .Params.tags }}
+    <div class="post-tags">
+      {{ range . }}
+      <a class="tag" href="{{ "/tags/" | relURL }}{{ . | urlize }}">{{ . }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
   </header>
   <div class="post-content fade-in">
     {{ .Content }}
   </div>
+  <nav class="post-nav fade-in">
+    {{ with .PrevInSection }}
+    <a class="post-nav-prev" href="{{ .RelPermalink }}">
+      <span class="label-sm">← Previous</span>
+      <span class="post-nav-title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+    {{ with .NextInSection }}
+    <a class="post-nav-next" href="{{ .RelPermalink }}">
+      <span class="label-sm">Next →</span>
+      <span class="post-nav-title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+  </nav>
 </article>
 {{ end }}
