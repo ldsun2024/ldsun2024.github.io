@@ -12,7 +12,7 @@
 
   <div class="archive-list">
     {{ $pages := .Pages }}
-    {{ if ne .Data.Singular "tag" }}{{ $pages = where .Site.RegularPages "Section" "posts" }}{{ end }}
+    {{ if not $isTag }}{{ $pages = where .Site.RegularPages "Section" "posts" }}{{ end }}
     {{ $paginator := .Paginate $pages 20 }}
     {{ range $paginator.Pages.GroupByDate "2006" }}
     <section class="archive-year-group">
@@ -32,13 +32,9 @@
   </div>
   {{ if gt $paginator.TotalPages 1 }}
   <nav class="pagination fade-in">
-    {{ if $paginator.HasPrev }}
-    <a class="pagination-prev" href="{{ $paginator.Prev.URL }}">← 上一页</a>
-    {{ end }}
+    {{ if $paginator.HasPrev }}<a class="pagination-prev" href="{{ $paginator.Prev.URL }}">← 上一页</a>{{ end }}
     <span class="pagination-info">{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
-    {{ if $paginator.HasNext }}
-    <a class="pagination-next" href="{{ $paginator.Next.URL }}">下一页 →</a>
-    {{ end }}
+    {{ if $paginator.HasNext }}<a class="pagination-next" href="{{ $paginator.Next.URL }}">下一页 →</a>{{ end }}
   </nav>
   {{ end }}
 </section>

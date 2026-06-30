@@ -903,6 +903,207 @@ main {
   }
 }
 
+/* ===== Tags Cloud Page ===== */
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tag-cloud-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-label);
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid var(--color-border-light);
+  transition: all 0.2s;
+}
+
+.tag-cloud-item:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+}
+
+.tag-count {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+/* ===== Tag Filter ===== */
+.tag-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.tag-filter-chip {
+  font-family: var(--font-label);
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 1px solid var(--color-border-light);
+  transition: all 0.2s;
+}
+
+.tag-filter-chip:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.tag-filter-chip.active {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-color: var(--color-primary);
+}
+
+
+@media (max-width: 768px) {
+  :root {
+    --section-gap: 80px;
+  }
+  .hero { padding-top: 40px; }
+  .hero h1 { font-size: 28px; }
+  .featured-card { padding: 48px 0; }
+  .featured-card h2 { font-size: 24px; }
+  .post-list-inner { gap: 80px; }
+  .post-item h2 { font-size: 20px; }
+  .post-content { font-size: 16px; }
+  .post-content p { font-size: 16px; }
+  .cta-section h2 { font-size: 28px; }
+}
+
+/* ===== Category Grid ===== */
+.category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+@media (max-width: 600px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: 16px;
+  padding: 48px 32px 40px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  transform: translateY(-4px);
+}
+
+.category-card:hover::before {
+  opacity: 1;
+}
+
+.category-card-emoji {
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.category-card-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.category-card-desc {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  max-width: 280px;
+}
+
+.category-card-count {
+  font-family: var(--font-label);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+/* ===== Subsection Hero ===== */
+.subsection-hero {
+  text-align: center;
+  padding: 48px 0 32px;
+  margin-bottom: 32px;
+}
+
+.subsection-hero-emoji {
+  font-size: 56px;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.subsection-title {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.subsection-desc {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.subsection-count {
+  font-family: var(--font-label);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.03em;
+}
+
+/* ===== Archive List ===== */
 .archive-year-group {
   display: flex;
   flex-direction: column;
@@ -1008,74 +1209,6 @@ main {
   color: var(--color-secondary);
 }
 
-/* ===== Tags Cloud Page ===== */
-.tags-cloud {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.tag-cloud-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-label);
-  font-size: 14px;
-  line-height: 1;
-  letter-spacing: 0.03em;
-  font-weight: 500;
-  color: var(--color-primary);
-  text-decoration: none;
-  padding: 10px 18px;
-  border: 1px solid var(--color-border-light);
-  transition: all 0.2s;
-}
-
-.tag-cloud-item:hover {
-  border-color: var(--color-primary);
-  background: var(--color-surface);
-}
-
-.tag-count {
-  font-size: 12px;
-  color: var(--color-text-secondary);
-}
-
-/* ===== Tag Filter ===== */
-.tag-filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 40px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--color-border-light);
-}
-
-.tag-filter-chip {
-  font-family: var(--font-label);
-  font-size: 12px;
-  line-height: 1;
-  letter-spacing: 0.05em;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: var(--color-text-secondary);
-  text-decoration: none;
-  padding: 6px 12px;
-  border: 1px solid var(--color-border-light);
-  transition: all 0.2s;
-}
-
-.tag-filter-chip:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
-
-.tag-filter-chip.active {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-  border-color: var(--color-primary);
-}
-
 /* ===== Pagination ===== */
 .pagination {
   display: flex;
@@ -1107,23 +1240,3 @@ main {
 
 .pagination-info {
   font-family: var(--font-label);
-  font-size: 12px;
-  line-height: 1;
-  letter-spacing: 0.03em;
-  color: var(--color-text-secondary);
-}
-
-@media (max-width: 768px) {
-  :root {
-    --section-gap: 80px;
-  }
-  .hero { padding-top: 40px; }
-  .hero h1 { font-size: 28px; }
-  .featured-card { padding: 48px 0; }
-  .featured-card h2 { font-size: 24px; }
-  .post-list-inner { gap: 80px; }
-  .post-item h2 { font-size: 20px; }
-  .post-content { font-size: 16px; }
-  .post-content p { font-size: 16px; }
-  .cta-section h2 { font-size: 28px; }
-}

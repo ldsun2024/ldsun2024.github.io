@@ -1,6 +1,6 @@
 {{ define "main" }}
 <article class="single-content">
-  <header class="post-header fade-in">
+  <header class="post-header">
     <div class="post-meta">
       <span class="label-sm">{{ .Date.Format "2006-01-02" }}</span>
       {{ if .Lastmod }}
@@ -19,13 +19,13 @@
     </div>
     {{ end }}
   </header>
-  <div class="post-content fade-in">
+  <div class="post-content">
     {{ .Content }}
   </div>
-  <div class="back-to-archive fade-in">
+  <div class="back-to-archive">
     <a href="{{ "/posts/" | relURL }}">← 返回文章列表</a>
   </div>
-  <nav class="post-nav fade-in">
+  <nav class="post-nav">
     {{ with .PrevInSection }}
     <a class="post-nav-prev" href="{{ .RelPermalink }}">
       <span class="label-sm">← Previous</span>
