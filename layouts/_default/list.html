@@ -11,7 +11,9 @@
   </div>
 
   <div class="archive-list">
-    {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") 20 }}
+    {{ $pages := .Pages }}
+    {{ if ne .Data.Singular "tag" }}{{ $pages = where .Site.RegularPages "Section" "posts" }}{{ end }}
+    {{ $paginator := .Paginate $pages 20 }}
     {{ $total := len $paginator.Pages }}
     {{ $num := $total }}
     {{ range $paginator.Pages.GroupByDate "2006" }}
