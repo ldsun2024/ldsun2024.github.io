@@ -31,7 +31,7 @@
     {{ end }}
   </div>
   {{ if gt $paginator.TotalPages 1 }}
-  <nav class="pagination fade-in">
+  <nav class="pagination fade-in-1">
     {{ if $paginator.HasPrev }}<a class="pagination-prev" href="{{ $paginator.Prev.URL }}">← 上一页</a>{{ end }}
     <span class="pagination-info">{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
     {{ if $paginator.HasNext }}<a class="pagination-next" href="{{ $paginator.Next.URL }}">下一页 →</a>{{ end }}

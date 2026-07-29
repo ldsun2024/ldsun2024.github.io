@@ -11,7 +11,6 @@
   --color-text-secondary: #505f76;
   --color-border: #c4c7c7;
   --color-border-light: #e2e2e2;
-  --color-accent: #000000;
   --color-on-primary-container: #858383;
 
   /* Typography */
@@ -275,7 +274,7 @@ main {
 
 /* ===== Single Post/Page ===== */
 .single-content {
-  max-width: 720px;
+  max-width: 1024px;
   margin: 0 auto;
   padding: 60px var(--gutter-mobile) 0;
 }
@@ -307,8 +306,21 @@ main {
 
 .post-content {
   font-size: 18px;
-  line-height: 1.75;
+  line-height: 1.85;
   letter-spacing: -0.011em;
+  padding-left: 24px;
+  border-left: 1px solid var(--color-border-light);
+}
+
+/* Drop Cap - 首字下沉 */
+.post-content > p:first-of-type::first-letter {
+  font-family: var(--font-heading);
+  font-size: 64px;
+  font-weight: 700;
+  float: left;
+  line-height: 0.8;
+  margin: 6px 12px 0 0;
+  color: var(--color-primary);
 }
 
 .post-content h2 {
@@ -324,7 +336,7 @@ main {
 .post-content p {
   margin-bottom: 24px;
   font-size: 18px;
-  line-height: 1.75;
+  line-height: 1.85;
   color: var(--color-text);
 }
 
@@ -516,6 +528,14 @@ main {
   transition-delay: 0.4s;
 }
 
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
 /* ===== Archive Page ===== */
 .archive-page {
   max-width: var(--container-max);
@@ -606,6 +626,9 @@ main {
   .hero h1 { font-size: 28px; }
   .post-content { font-size: 16px; }
   .post-content p { font-size: 16px; }
+  .post-content {
+    padding-left: 16px;
+  }
 }
 
 /* ===== Category Grid ===== */
@@ -731,8 +754,6 @@ main {
   gap: 24px;
   padding: 32px 0;
 }
-
-
 
 @media (min-width: 768px) {
   .archive-year-group {
@@ -861,3 +882,125 @@ main {
 
 .pagination-info {
   font-family: var(--font-label);
+}
+
+/* ===== Pool Page (黑马池) ===== */
+.archive-page.pool-page {
+  overflow-x: auto;
+  max-width: 80vw;
+}
+
+.pool-page table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: transparent;
+}
+
+/* ===== 表头 - 三线表上横线 ===== */
+.pool-page thead {
+  border-top: 2px solid var(--color-text-secondary);
+}
+
+.pool-page thead th {
+  font-family: var(--font-label);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding: 18px 20px 14px;
+  border-bottom: 2px solid var(--color-text-secondary);
+}
+
+.pool-page thead th:first-child { width: 4%; }
+.pool-page thead th:nth-child(2) { width: 10%; }
+.pool-page thead th:nth-child(3) { width: 14%; }
+.pool-page thead th:nth-child(4) { width: 14%; }
+.pool-page thead th:nth-child(5) { width: 14%; }
+.pool-page thead th:last-child { width: 44%; }
+
+/* ===== 行 ===== */
+.pool-page tbody td {
+  padding: 14px 20px;
+  color: var(--color-text);
+  vertical-align: middle;
+  border-bottom: 1px dashed var(--color-border-light);
+}
+
+.pool-page tbody tr:last-child td {
+  border-bottom: 1px solid var(--color-text-secondary);
+}
+
+/* 悬停高亮 */
+.pool-page tbody tr:hover td {
+  background: rgba(0,0,0,0.035);
+}
+
+/* ===== # 编号列 ===== */
+.pool-page tbody td:first-child {
+  font-family: var(--font-label);
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ===== 更新时间列 ===== */
+.pool-page tbody td:nth-child(2) {
+  font-family: var(--font-label);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ===== 作业名称列 ===== */
+.pool-page tbody td:nth-child(3) {
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* ===== 作业代码列 ===== */
+.pool-page tbody td:nth-child(4) {
+  font-family: 'SF Mono', 'Cascadia Code', 'Courier New', monospace;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+/* ===== 作业板块列 ===== */
+.pool-page tbody td:nth-child(5) {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* ===== 打分列 ===== */
+.pool-page tbody td:last-child {
+  text-align: center;
+  font-family: var(--font-label);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* 移动端 */
+@media (max-width: 768px) {
+  .pool-page table {
+    font-size: 13px;
+  }
+  .pool-page thead th {
+    padding: 14px 14px 10px;
+    font-size: 11px;
+  }
+  .pool-page tbody td {
+    padding: 11px 14px;
+  }
+  .pool-page tbody td:nth-child(3) {
+    font-size: 15px;
+  }
+}

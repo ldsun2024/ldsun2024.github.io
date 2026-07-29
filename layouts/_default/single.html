@@ -2,10 +2,10 @@
 <article class="single-content">
   <header class="post-header">
     <div class="post-meta">
-      <span class="label-sm">{{ .Date.Format "2006-01-02" }}</span>
+      <span class="label-sm">{{ .Date.Format "2006-01-02 15:04:05" }}</span>
       {{ if .Lastmod }}
       <span class="meta-sep">·</span>
-      <span class="label-sm">更新 {{ .Lastmod.Format "2006-01-02" }}</span>
+      <span class="label-sm">更新 {{ .Lastmod.Format "2006-01-02 15:04:05" }}</span>
       {{ end }}
       <span class="meta-sep">·</span>
       <span class="label-sm">{{ .ReadingTime }} 分钟</span>
