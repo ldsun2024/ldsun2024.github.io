@@ -1,9 +1,11 @@
-# Hugo 构建输出
-/public/
-/resources/_gen/
-.hugo_build.lock
+# 依赖与构建输出
+node_modules/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+stats.html
 
-# 编辑器 / IDE
+# 大文件：原始 PDF（313MB，超过 GitHub 100MB 限制）
+*.pdf
 .vscode/
 .idea/
 *.swp
@@ -29,5 +31,7 @@ reasonix.toml
 
 # 项目临时文件
 req.md
-docs/
 *.bak
+
+# IDE 本地元数据
+.codebuddy/
