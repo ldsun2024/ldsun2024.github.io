@@ -29,5 +29,16 @@ reasonix.toml
 
 # 项目临时文件
 req.md
-docs/
 *.bak
+
+# 大文件：原始 PDF（313MB，超过 GitHub 100MB 限制，必须忽略）
+*.pdf
+
+# PDF 提取工具与缓存（可由 _scan.py 重新生成）
+pdf-md/_src/_struct.json
+
+# VitePress
+node_modules/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+stats.html
