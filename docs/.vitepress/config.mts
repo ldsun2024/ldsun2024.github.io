@@ -23,6 +23,14 @@ interface Cat {
   link: string
 }
 
+// 目录名保持精简（同时是 URL 路径），站点显示沿用原来的完整名称
+const DISPLAY_NAMES: Record<string, string> = {
+  '05-大盘多空': '大盘多空分析',
+  '06-期权': '期权课',
+  '07-火箭': '火箭课',
+  '08-黄金': '黄金课'
+}
+
 function scanCats(): Cat[] {
   if (!fs.existsSync(notesDir)) return []
   return fs
@@ -36,15 +44,15 @@ function scanCats(): Cat[] {
         .filter((f) => f.endsWith('.md') && f !== 'index.md')
       return {
         dir,
-        label: dir.replace(/^\d+-/, ''),
+        label: DISPLAY_NAMES[dir] ?? dir.replace(/^\d+-/, ''),
         count: files.length,
         link: '/笔记/' + dir + '/'
       }
     })
 }
 
-const COURSES = ['01-中级课', '02-高级课', '03-研修课', '04-研修班',
-  '05-大盘多空分析', '06-期权课', '07-火箭课', '08-黄金课']
+const COURSES = ['01-中级课', '02-高级课', '03-研修课',
+  '05-大盘多空', '06-期权', '07-火箭', '08-黄金']
 const PAGES = [
   { text: '首页', link: '/' },
   { text: '经典语录', link: '/笔记/09-经典语录/' },
@@ -67,10 +75,21 @@ function buildNav() {
   return nav
 }
 
+const COURSE_NAMES = '(中级课|高级课|研修课|大盘多空分析|期权课|火箭课|黄金课)'
+
 function cleanTitle(t: string): string {
-  return t
-    .replace(/^课程理论-/, '')
-    .replace(/^[^-]+-\d+-/, '')
+  const stripDate = (s: string): string =>
+    s
+      .replace(/^\d{4}\s*年\s*[\d\s]*月\s*[\d\s]*日-/, '')
+      .replace(/^\d{4}\.\d{2}\.\d{2}-/, '')
+  let s = t.replace(/^课程理论-/, '')
+  s = stripDate(s)
+  s = s.replace(/^\d{2}-\d+-?/, '')
+  s = s.replace(new RegExp('^' + COURSE_NAMES + '-\\d+-'), '')
+  s = s.replace(new RegExp('^' + COURSE_NAMES + '[\\s-]+(?=\\S)'), '')
+  s = stripDate(s)
+  s = s.replace(/^\d+-/, '')
+  return s.trim()
 }
 
 function listItems(c: Cat, numbered = false) {
@@ -94,7 +113,8 @@ function buildSidebar() {
   const cats = scanCats()
   const group = (c: Cat) => ({
     text: c.label,
-    collapsed: false,
+    // 条目多的分组（如 07-火箭 108 项）默认折叠，避免侧边栏过长
+    collapsed: c.count > 30,
     items: listItems(c, COURSES.includes(c.dir))
   })
   const pick = (dir: string): Cat[] => {
