@@ -1,38 +1,78 @@
 ﻿---
 layout: home
-
-hero:
-  name: 8861 投资笔记
-  text: 课程笔记与实战复盘
-  tagline: 缠论分型、中枢、买点战法、期权交易、黄金课程——230 篇课程笔记
-  actions:
-    - theme: brand
-      text: 进入笔记
-      link: /笔记/
-    - theme: alt
-      text: 中级课
-      link: /笔记/01-中级课/
-    - theme: alt
-      text: 火箭课
-      link: /笔记/07-火箭课/
-
-features:
-  - title: 中级课 · 25 篇
-    details: 顶底分型、包含关系、修正笔、中枢画法、一二三四买等基础体系
-    link: /笔记/01-中级课/
-  - title: 高级课 · 20 篇
-    details: 强势 3+3、区间套、九阳神功、中长线强势选股法
-    link: /笔记/02-高级课/
-  - title: 研修课 · 12 篇
-    details: 机构分时买卖、绝密大盘分析、分时洗盘法、第六买点
-    link: /笔记/03-研修课/
-  - title: 大盘多空分析 · 17 篇
-    details: 多空力量转换、期指思维、K 线多维度推理、跳空意义
-    link: /笔记/05-大盘多空分析/
-  - title: 期权课 · 13 篇
-    details: 交易心理学、动力学与速度学、波动率、50ETF 与大盘关系
-    link: /笔记/06-期权课/
-  - title: 火箭课 · 108 篇
-    details: 涨停模型、3S/3A 买点、攻击 K 线、超级选股法
-    link: /笔记/07-火箭课/
 ---
+
+<div class="poster">
+  <div class="poster-lines">
+    <span class="poster-line poster-line-left">只有无与伦比的专注</span>
+    <span class="poster-line poster-line-right">才有超乎想象的回报</span>
+  </div>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap');
+
+/* 布局重置：仅在包含 .poster 的首页生效，避免污染其他页面 */
+.VPPage:has(.poster),
+.VPContent:has(.poster),
+.VPHome:has(.poster) {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.VPHome:has(.poster) {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--vp-nav-height));
+}
+</style>
+
+<style scoped>
+.poster {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 24px;
+}
+
+.poster-lines {
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-items: start;
+  row-gap: 0.5em;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.poster-line {
+  font-family: 'Zhi Mang Xing', 'Ma Shan Zheng', 'STXingkai', 'KaiTi', 'STKaiti', '楷体', cursive, serif;
+  font-size: clamp(36px, 7.6vw, 124px);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  color: var(--vp-c-text-1);
+  white-space: nowrap;
+}
+
+.poster-line-right {
+  justify-self: end;
+}
+
+@media (max-width: 767px) {
+  .poster-lines {
+    justify-items: center;
+  }
+
+  .poster-line-right {
+    justify-self: auto;
+  }
+
+  .poster-line {
+    /* 9字一行自适应：8.2vw 保证 320-767px 均放得下，上限 58px 与 768px 处桌面 7.6vw 无缝衔接 */
+    font-size: clamp(24px, 8.2vw, 58px);
+    white-space: nowrap;
+  }
+}
+</style>
