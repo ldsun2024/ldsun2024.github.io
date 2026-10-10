@@ -1,7 +1,10 @@
 # 依赖与构建输出
 node_modules/
+node_modules_bak/
 docs/.vitepress/cache/
 docs/.vitepress/dist/
+# VitePress 构建输出（根目录，由 npm run build 生成，部署时 Actions 重新构建）
+dist/
 stats.html
 
 # 大文件：原始 PDF（313MB，超过 GitHub 100MB 限制）
