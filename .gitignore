@@ -38,3 +38,5 @@ req.md
 
 # IDE 本地元数据
 .codebuddy/
+
+node_modules_bak/

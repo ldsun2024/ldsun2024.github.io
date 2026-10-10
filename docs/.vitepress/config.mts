@@ -16,50 +16,131 @@ function readTitle(file: string): string {
   return path.basename(file, '.md')
 }
 
-function buildSidebar() {
+interface Cat {
+  dir: string
+  label: string
+  count: number
+  link: string
+}
+
+function scanCats(): Cat[] {
   if (!fs.existsSync(notesDir)) return []
-  const cats = fs
+  return fs
     .readdirSync(notesDir, { withFileTypes: true })
     .filter((d) => d.isDirectory())
     .map((d) => d.name)
     .sort()
-  return cats.map((cat) => {
-    const dir = path.join(notesDir, cat)
-    const files = fs
-      .readdirSync(dir)
-      .filter((f) => f.endsWith('.md') && f !== 'index.md')
-      .sort()
+    .map((dir) => {
+      const files = fs
+        .readdirSync(path.join(notesDir, dir))
+        .filter((f) => f.endsWith('.md') && f !== 'index.md')
+      return {
+        dir,
+        label: dir.replace(/^\d+-/, ''),
+        count: files.length,
+        link: '/笔记/' + dir + '/'
+      }
+    })
+}
+
+const COURSES = ['01-中级课', '02-高级课', '03-研修课', '04-研修班',
+  '05-大盘多空分析', '06-期权课', '07-火箭课', '08-黄金课']
+const PAGES = [
+  { text: '首页', link: '/' },
+  { text: '经典语录', link: '/笔记/09-经典语录/' },
+  {
+    text: '笔记',
+    items: [] as any[]
+  },
+  { text: '案例分析', link: '/笔记/10-案例分析/' },
+  { text: '其它', link: '/笔记/11-其它/' }
+]
+
+function buildNav() {
+  const cats = scanCats()
+  const courseItems = cats
+    .filter((c) => COURSES.includes(c.dir))
+    .map((c) => ({ text: c.label + ' · ' + c.count, link: c.link }))
+  const nav = PAGES.map((p) =>
+    p.text === '笔记' ? { text: p.text, items: courseItems } : p
+  )
+  return nav
+}
+
+function cleanTitle(t: string): string {
+  return t
+    .replace(/^课程理论-/, '')
+    .replace(/^[^-]+-\d+-/, '')
+}
+
+function listItems(c: Cat, numbered = false) {
+  const dir = path.join(notesDir, c.dir)
+  const files = fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith('.md') && f !== 'index.md')
+    .sort()
+  return files.map((f) => {
+    const clean = cleanTitle(readTitle(path.join(dir, f)))
+    const m = numbered ? f.match(/^(\d+)-/) : null
+    const num = m ? String(parseInt(m[1], 10)).padStart(2, '0') : ''
     return {
-      text: cat.replace(/^\d+-/, ''),
-      link: '/笔记/' + cat + '/',
-      collapsed: true,
-      items: files.map((f) => ({
-        text: readTitle(path.join(dir, f)).replace(/^课程理论-/, ''),
-        link: '/笔记/' + cat + '/' + f.replace(/\.md$/, '')
-      }))
+      text: num ? num + '-' + clean : clean,
+      link: '/笔记/' + c.dir + '/' + f.replace(/\.md$/, '')
     }
   })
 }
 
+function buildSidebar() {
+  const cats = scanCats()
+  const group = (c: Cat) => ({
+    text: c.label,
+    collapsed: false,
+    items: listItems(c, COURSES.includes(c.dir))
+  })
+  const pick = (dir: string): Cat[] => {
+    const c = cats.find((x) => x.dir === dir)
+    return c ? [c] : []
+  }
+  return {
+    '/笔记/09-经典语录/': pick('09-经典语录').map(group),
+    '/笔记/10-案例分析/': pick('10-案例分析').map(group),
+    '/笔记/11-其它/': pick('11-其它').map(group),
+    ...Object.fromEntries(
+      cats
+        .filter((c) => COURSES.includes(c.dir))
+        .map((c) => ['/笔记/' + c.dir + '/', [group(c)]])
+    )
+  }
+}
+
 export default defineConfig({
-  title: '8861 投资笔记',
+  title: '8861',
   description: '股票技术分析课程笔记与实战复盘',
   lang: 'zh-CN',
   base: '/',
+  outDir: '../dist',
   cleanUrls: true,
   lastUpdated: true,
+  repo: 'https://github.com/ldsun2024/ldsun2024.github.io',
   themeConfig: {
-    nav: [
-      { text: '首页', link: '/' },
-      { text: '笔记', link: '/笔记/' }
-    ],
+    nav: buildNav(),
     sidebar: buildSidebar(),
-    outline: { level: [2, 3], label: '本页目录' },
+    outline: { level: [2, 2], label: '页面导航' },
     search: { provider: 'local' },
-    docFooter: { prev: '上一篇', next: '下一篇' },
-    lastUpdatedText: '最后更新',
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/ldsun2024/ldsun2024.github.io' }
+    ],
+    editLink: {
+      pattern: 'https://github.com/ldsun2024/ldsun2024.github.io/edit/main/docs/:path',
+      text: '在 GitHub 上编辑此页'
+    },
+    docFooter: { prev: '上一页', next: '下一页' },
+    lastUpdatedText: '最后更新于',
     darkModeSwitchLabel: '主题',
-    sidebarMenuLabel: '目录',
-    returnToTopLabel: '回到顶部'
+    sidebarMenuLabel: '菜单',
+    returnToTopLabel: '回到顶部',
+    darkModeSwitchTitle: '切换到深色模式',
+    lightModeSwitchTitle: '切换到浅色模式',
+    externalLinkIcon: true
   }
 })
