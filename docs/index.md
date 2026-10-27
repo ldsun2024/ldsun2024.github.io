@@ -4,7 +4,6 @@ layout: page
 
 <script setup>
 const res = [
-  { name: '新视觉 6080', url: 'https://m.xinshijue-6080.hl.cn/', domain: 'xinshijue-6080.hl.cn' },
   { name: '6080 影视', url: 'https://www.6080film.cc/', domain: '6080film.cc' },
   { name: 'hellorlgzf7sn', url: 'https://www.hellorlgzf7sn.com/', domain: 'hellorlgzf7sn.com' },
   { name: 'rentbus', url: 'https://www.rentbus.cn/', domain: 'rentbus.cn' },
@@ -20,7 +19,16 @@ const res = [
   { name: '茶杯狐', url: 'https://cupfox.love/', domain: 'cupfox.love' },
   { name: 'NO视频', url: 'https://www.novipnoad.net/', domain: 'novipnoad.net' },
   { name: '微视TV', url: 'https://weishitv.xyz/', domain: 'weishitv.xyz' },
-  { name: 'Trex', url: 'https://trex.tzfile.com/', domain: 'trex.tzfile.com' }
+  { name: 'Trex', url: 'https://trex.tzfile.com/', domain: 'trex.tzfile.com' },
+  { name: '硬核影视', url: 'https://yinghezhinan.com/', domain: 'yinghezhinan.com' },
+  { name: '555电影', url: 'https://55kan7.top/', domain: '55kan7.top' },
+  { name: 'AI免费看剧', url: 'https://kanju3.com/', domain: 'kanju3.com' },
+  { name: '懂片帝', url: 'https://dongpian1.com/', domain: 'dongpian1.com' },
+  { name: '电影天堂', url: 'https://d.0996w.com/D21187', domain: 'd.0996w.com' },
+  { name: '好好看/网飞猫/可可影视', url: 'https://vedl.lxapp3.shop/dl.html', domain: 'vedl.lxapp3.shop' },
+  { name: '秒看电影', url: 'https://miaokan.cc/', domain: 'miaokan.cc' },
+  { name: '4K电影下载', url: 'https://4kzn.cc/', domain: '4kzn.cc' },
+  { name: '更多影视', url: 'https://iitang.com/tv', domain: 'iitang.com' }
 ]
 </script>
 
@@ -33,6 +41,7 @@ const res = [
 <div class="tv-list">
 <a v-for="(s, i) in res" :key="s.url" class="tv-row" :style="{ '--i': i }" :href="s.url" target="_blank" rel="noopener noreferrer">
 <span class="tv-idx">{{ String(i + 1).padStart(2, '0') }}</span>
+<span class="tv-fav" aria-hidden="true">{{ s.name[0] }}</span>
 <span class="tv-name">{{ s.name }}</span>
 <span class="tv-domain">{{ s.domain }}</span>
 <span class="tv-arrow">→</span>
@@ -59,6 +68,11 @@ const res = [
   --vp-c-brand-1: var(--tv-ink);
   --vp-c-brand-2: var(--tv-ink);
   --vp-c-brand-3: var(--tv-ink);
+  --vp-nav-bg-color: transparent;
+}
+
+body {
+  background: linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)), url('/bg.jpg') center / cover fixed no-repeat;
 }
 
 html.dark {
@@ -78,6 +92,10 @@ html.dark {
   --vp-c-brand-1: var(--tv-ink);
   --vp-c-brand-2: var(--tv-ink);
   --vp-c-brand-3: var(--tv-ink);
+}
+
+html.dark body {
+  background: linear-gradient(rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.82)), url('/bg.jpg') center / cover fixed no-repeat;
 }
 
 .tv-page {
@@ -131,7 +149,7 @@ html.dark {
 .tv-row {
   position: relative;
   display: grid;
-  grid-template-columns: 42px 1fr auto 26px;
+  grid-template-columns: 42px 20px 1fr auto 26px;
   align-items: baseline;
   gap: 16px;
   padding: 23px 0;
@@ -167,6 +185,27 @@ html.dark {
   letter-spacing: 0.1em;
   color: var(--tv-ink-3);
   transition: color 0.2s ease;
+}
+
+.tv-fav {
+  width: 20px;
+  height: 20px;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--tv-line);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1;
+  color: var(--tv-ink-3);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.tv-row:hover .tv-fav {
+  color: var(--tv-ink);
+  border-color: var(--tv-ink-3);
 }
 
 .tv-name {
@@ -234,7 +273,7 @@ html.dark {
   }
 
   .tv-row {
-    grid-template-columns: 30px 1fr 20px;
+    grid-template-columns: 30px 20px 1fr 20px;
     gap: 12px;
     padding: 19px 0;
   }
