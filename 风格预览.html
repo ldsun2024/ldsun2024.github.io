@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>风格预览 · 课程目录清单</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0b0b0d; color: #e8e8ea; font-family: system-ui, -apple-system, "Microsoft YaHei", sans-serif; }
+  header { padding: 26px 30px 20px; border-bottom: 1px solid #26262b; }
+  h1 { margin: 0 0 8px; font-size: 19px; font-weight: 600; letter-spacing: .01em; }
+  header p { margin: 0; font-size: 13px; color: #8b8b93; line-height: 1.7; }
+  header code { background: #1a1a1f; padding: 1px 6px; border-radius: 4px; font-size: 12px; color: #b9b9c2; }
+  section { border-bottom: 1px solid #26262b; }
+  .bar { display: flex; align-items: baseline; gap: 12px; padding: 14px 30px; background: #131317; }
+  .bar b { font-size: 14px; font-weight: 600; }
+  .bar span { font-size: 12px; color: #7d7d86; flex: 1; }
+  .bar a { font-size: 12px; color: #6ea8ff; text-decoration: none; white-space: nowrap; }
+  .bar a:hover { text-decoration: underline; }
+  iframe { display: block; width: 100%; height: 860px; border: 0; background: #fff; }
+</style>
+</head>
+<body>
+<header>
+  <h1>课程目录清单 · 三种风格</h1>
+  <p>三份文件内容与排版完全相同（<code>cols: 6</code> 六卡并排、火箭课整行六列、编号 0001–0219），只有主题不同。点右上角「新窗口打开」可看全屏，或直接滚动下面的框。</p>
+</header>
+
+<section>
+  <div class="bar"><b>1 · shadcn</b><span>卡片风，白底、圆角、细边框，最接近常见后台界面</span><a href="课程目录清单.html" target="_blank">新窗口打开 ↗</a></div>
+  <iframe src="课程目录清单.html" loading="lazy" title="shadcn 风格"></iframe>
+</section>
+
+<section>
+  <div class="bar"><b>2 · blueprint</b><span>工程图纸风，网格底纹、标尺装饰、等宽字体，技术感最强</span><a href="课程目录清单-blueprint.html" target="_blank">新窗口打开 ↗</a></div>
+  <iframe src="课程目录清单-blueprint.html" loading="lazy" title="blueprint 风格"></iframe>
+</section>
+
+<section>
+  <div class="bar"><b>3 · paper</b><span>纸感风，暖白底色、低对比，适合长时间阅读</span><a href="课程目录清单-paper.html" target="_blank">新窗口打开 ↗</a></div>
+  <iframe src="课程目录清单-paper.html" loading="lazy" title="paper 风格"></iframe>
+</section>
+</body>
+</html>
